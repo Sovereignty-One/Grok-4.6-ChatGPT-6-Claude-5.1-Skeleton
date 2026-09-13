@@ -30,10 +30,12 @@ jobs:
           pip install pytest pytest-asyncio flake8
 
       - name: Lint
-        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --max-line-length=120
+        run: |
+         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --max-line-length=120
 
       - name: Run tests
-        run: pytest --tb=short -q
+        run: 
+         spytest --tb=short -q
         env:
           DATABASE_URL: sqlite:///./test.db
           REDIS_URL: redis://localhost:9897
@@ -52,8 +54,7 @@ jobs:
       - name: Set up Python 3.13
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
-
+          python-version: 
       - name: Syntax check security sentinel
         run: python -m py_compile security_sentinel.py
         working-directory: .
