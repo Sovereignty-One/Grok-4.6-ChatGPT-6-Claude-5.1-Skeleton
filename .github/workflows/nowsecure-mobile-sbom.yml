@@ -2,9 +2,9 @@ name: "NowSecure Mobile SBOM"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
   schedule:
     - cron: '15 1 * * 2'
 
@@ -31,7 +31,6 @@ jobs:
             echo "enabled=true" >> "$GITHUB_OUTPUT"
           else
             echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::NowSecure scan skipped: this repository does not include the required mobile build inputs or NS_TOKEN is unset."
           fi
 
       - name: Build your application
